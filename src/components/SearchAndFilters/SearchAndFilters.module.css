@@ -1,0 +1,326 @@
+/* SearchAndFilters CSS Module */
+
+/* Filters Section */
+.filtersSection {
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--color-shadow) 0 1px 3px;
+}
+
+.filtersSectionLight {
+  background: var(--color-surface);
+}
+
+.filtersSectionDark {
+  background: var(--color-surface);
+}
+
+.filtersContainer {
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr auto;
+  gap: 1rem;
+  align-items: end;
+}
+
+/* Search Input Styles */
+.searchInputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.searchContainer {
+  width: 100%;
+}
+
+.searchInputContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 0.75rem;
+  z-index: 1;
+  font-size: 0.875rem;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 0.5rem 2.5rem 0.5rem 2.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+  background-color: var(--color-surface);
+  color: var(--color-textPrimary);
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-hover);
+}
+
+.searchInputLight {
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.searchInputLight::placeholder {
+  color: var(--color-textMuted);
+}
+
+.searchInputDark {
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.searchInputDark::placeholder {
+  color: var(--color-textMuted);
+}
+
+.clearSearchButton {
+  position: absolute;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  opacity: 0.6;
+}
+
+.clearSearchButton:hover {
+  opacity: 1;
+  background: var(--color-errorSurface);
+}
+
+.clearSearchButtonLight {
+  color: var(--color-textMuted);
+}
+
+.clearSearchButtonDark {
+  color: var(--color-textMuted);
+}
+
+/* Filter Group Styles */
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.filterLabel {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+}
+
+.filterLabelLight {
+  color: var(--color-textPrimary);
+}
+
+.filterLabelDark {
+  color: var(--color-textPrimary);
+}
+
+.filterSelect {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  background: var(--color-surface);
+  color: var(--color-textPrimary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filterSelect:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-hover);
+}
+
+.filterSelectLight {
+  background: var(--color-surface);
+  color: var(--color-textPrimary);
+  border-color: var(--color-border);
+}
+
+.filterSelectDark {
+  background: var(--color-surface);
+  color: var(--color-textPrimary);
+  border-color: var(--color-border);
+}
+
+/* Date Range Styles */
+.dateRangeInputs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dateInput {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  background: var(--color-surface);
+  color: var(--color-textPrimary);
+  transition: all 0.2s ease;
+}
+
+.dateInput:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-hover);
+}
+
+.dateInputLight {
+  background: var(--color-surface);
+  color: var(--color-textPrimary);
+  border-color: var(--color-border);
+}
+
+.dateInputDark {
+  background: var(--color-surface);
+  color: var(--color-textPrimary);
+  border-color: var(--color-border);
+}
+
+.dateSeparator {
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.dateSeparatorLight {
+  color: var(--color-textMuted);
+}
+
+.dateSeparatorDark {
+  color: var(--color-textMuted);
+}
+
+/* Clear Filters Button */
+.clearFiltersGroup {
+  display: flex;
+  align-items: flex-end;
+}
+
+.clearFiltersButton {
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  border: 1px solid var(--color-border);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.clearFiltersButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.clearFiltersButtonLight {
+  background-color: var(--color-surface);
+  color: var(--color-textPrimary);
+  border-color: var(--color-border);
+}
+
+.clearFiltersButtonLight:hover:not(:disabled) {
+  background-color: var(--color-surfaceSecondary);
+  border-color: var(--color-textMuted);
+}
+
+.clearFiltersButtonDark {
+  background-color: var(--color-surface);
+  color: var(--color-textPrimary);
+  border-color: var(--color-border);
+}
+
+.clearFiltersButtonDark:hover:not(:disabled) {
+  background-color: var(--color-surfaceSecondary);
+  border-color: var(--color-textMuted);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .filtersContainer {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .searchInputGroup {
+    grid-column: span 2;
+  }
+
+  .clearFiltersGroup {
+    grid-column: span 2;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .filtersContainer {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .searchInputGroup,
+  .filterGroup,
+  .clearFiltersGroup {
+    grid-column: span 1;
+  }
+
+  .dateRangeInputs {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .dateInput {
+    width: 100%;
+  }
+
+  .filtersSection {
+    padding: 1rem;
+  }
+
+  .clearFiltersButton {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

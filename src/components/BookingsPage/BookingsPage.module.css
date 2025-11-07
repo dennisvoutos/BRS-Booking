@@ -1,0 +1,732 @@
+/* BookingsPage CSS Module */
+
+.bookingsPage {
+  padding: 1.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Page Header */
+.pageHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  gap: 1rem;
+}
+
+.headerContent {
+  flex: 1;
+}
+
+.headerTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.headerTitleLight {
+  color: var(--color-textPrimary);
+}
+
+.headerTitleDark {
+  color: var(--color-textPrimary);
+}
+
+.headerSubtitle {
+  font-size: 1rem;
+}
+
+.headerSubtitleLight {
+  color: var(--color-textSecondary);
+}
+
+.headerSubtitleDark {
+  color: var(--color-textSecondary);
+}
+
+/* Buttons */
+.btnPrimary,
+.btnSecondary,
+.btnLink {
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  border: 1px solid transparent;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btnPrimary:disabled,
+.btnSecondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btnPrimaryLight {
+  background-color: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.btnPrimaryLight:hover:not(:disabled) {
+  background-color: var(--color-primaryDark);
+  border-color: var(--color-primaryDark);
+}
+
+.btnPrimaryDark {
+  background-color: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.btnPrimaryDark:hover:not(:disabled) {
+  background-color: var(--color-primaryDark);
+  border-color: var(--color-primaryDark);
+}
+
+.btnSecondaryLight {
+  background-color: var(--color-surface);
+  color: var(--color-textPrimary);
+  border-color: var(--color-border);
+}
+
+.btnSecondaryLight:hover:not(:disabled) {
+  background-color: var(--color-surfaceSecondary);
+  border-color: var(--color-textMuted);
+}
+
+.btnSecondaryDark {
+  background-color: var(--color-surface);
+  color: var(--color-textPrimary);
+  border-color: var(--color-border);
+}
+
+.btnSecondaryDark:hover:not(:disabled) {
+  background-color: var(--color-surfaceSecondary);
+  border-color: var(--color-textMuted);
+}
+
+.btnLinkLight {
+  background: none;
+  color: var(--color-primary);
+  border: none;
+  text-decoration: underline;
+  padding: 0.25rem 0.5rem;
+}
+
+.btnLinkLight:hover {
+  color: var(--color-primaryDark);
+}
+
+.btnLinkDark {
+  background: none;
+  color: var(--color-primary);
+  border: none;
+  text-decoration: underline;
+  padding: 0.25rem 0.5rem;
+}
+
+.btnLinkDark:hover {
+  color: var(--color-primaryDark);
+}
+
+/* Action Buttons */
+.actionButtons {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.quickActionBtn,
+.quickActionBtnSuccess,
+.quickActionBtnWarning,
+.quickActionBtnDanger,
+.quickActionBtnRestore {
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.quickActionBtn {
+  background: var(--color-primary);
+  color: white;
+}
+
+.quickActionBtn:hover {
+  background: var(--color-primaryHover);
+  transform: scale(1.1);
+}
+
+.quickActionBtnSuccess {
+  background: var(--color-success);
+  color: white;
+}
+
+.quickActionBtnSuccess:hover {
+  background: var(--color-successLight);
+  transform: scale(1.1);
+}
+
+.quickActionBtnWarning {
+  background: var(--color-warning);
+  color: white;
+}
+
+.quickActionBtnWarning:hover {
+  background: var(--color-warningLight);
+  transform: scale(1.1);
+}
+
+.quickActionBtnDanger {
+  background: var(--color-error);
+  color: white;
+}
+
+.quickActionBtnDanger:hover {
+  background: var(--color-errorLight);
+  transform: scale(1.1);
+}
+
+.quickActionBtnRestore {
+  background: var(--color-accent);
+  color: white;
+}
+
+.quickActionBtnRestore:hover {
+  background: var(--color-accentLight);
+  transform: scale(1.1);
+}
+
+/* Confirmation Modal */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.modalOverlayLight {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modalOverlayDark {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.confirmationModal {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: var(--color-shadow) 0 20px 25px;
+}
+
+.confirmationModalLight {
+  background: var(--color-surface);
+}
+
+.confirmationModalDark {
+  background: var(--color-surface);
+}
+
+.confirmationHeader {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.confirmationTitle {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.confirmationBody {
+  padding: 1.5rem;
+}
+
+.confirmationMessage {
+  margin: 0;
+  color: var(--color-textMuted);
+  line-height: 1.5;
+}
+
+.confirmationActions {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.btnDanger {
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  border: 1px solid transparent;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btnDangerLight {
+  background-color: var(--color-error);
+  color: white;
+  border-color: var(--color-error);
+}
+
+.btnDangerLight:hover {
+  background-color: var(--color-errorDark);
+  border-color: var(--color-errorDark);
+}
+
+.btnDangerDark {
+  background-color: var(--color-error);
+  color: white;
+  border-color: var(--color-error);
+}
+
+.btnDangerDark:hover {
+  background-color: var(--color-errorDark);
+  border-color: var(--color-errorDark);
+}
+
+/* Filters Section */
+.filtersSection {
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--color-shadow) 0 1px 3px;
+}
+
+.filtersSectionLight {
+  background: var(--color-surface);
+}
+
+.filtersSectionDark {
+  background: var(--color-surface);
+}
+
+.filtersContainer {
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr auto;
+  gap: 1rem;
+  align-items: end;
+}
+
+.searchInputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.searchInput {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  transition: border-color 0.2s ease;
+  background-color: var(--color-surface);
+  color: var(--color-textPrimary);
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-hover);
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.filterLabel {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.filterLabelLight {
+  color: var(--color-textPrimary);
+}
+
+.filterLabelDark {
+  color: var(--color-textPrimary);
+}
+
+.filterSelect {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  background: var(--color-surface);
+  color: var(--color-textPrimary);
+}
+
+.filterSelect:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-hover);
+}
+
+.dateRangeInputs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dateInput {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  background: var(--color-surface);
+  color: var(--color-textPrimary);
+}
+
+.dateInput:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-hover);
+}
+
+.dateSeparator {
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.dateSeparatorLight {
+  color: var(--color-textMuted);
+}
+
+.dateSeparatorDark {
+  color: var(--color-textMuted);
+}
+
+/* Results Summary */
+.resultsSummary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.resultsCount {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.resultsCountLight {
+  color: var(--color-textSecondary);
+}
+
+.resultsCountDark {
+  color: var(--color-textSecondary);
+}
+
+/* State Containers */
+.bookingsListContainer {
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.errorState,
+.loadingState,
+.emptyState {
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.errorStateLight,
+.loadingStateLight,
+.emptyStateLight {
+  background: var(--color-surface);
+}
+
+.errorStateDark,
+.loadingStateDark,
+.emptyStateDark {
+  background: var(--color-surface);
+}
+
+.errorIcon,
+.emptyIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.errorTitle,
+.emptyTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.errorTitleLight,
+.emptyTitleLight {
+  color: var(--color-textPrimary);
+}
+
+.errorTitleDark,
+.emptyTitleDark {
+  color: var(--color-textPrimary);
+}
+
+.errorMessage,
+.emptyMessage,
+.loadingMessage {
+  margin-bottom: 1.5rem;
+}
+
+.errorMessageLight,
+.emptyMessageLight,
+.loadingMessageLight {
+  color: var(--color-textSecondary);
+}
+
+.errorMessageDark,
+.emptyMessageDark,
+.loadingMessageDark {
+  color: var(--color-textSecondary);
+}
+
+/* Loading Spinner */
+.loadingSpinner {
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid var(--color-border);
+  border-top: 3px solid var(--color-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Table */
+.bookingsTableContainer {
+  overflow-x: auto;
+}
+
+.bookingsTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tableHeaderRow {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.tableHeaderRowLight {
+  background-color: var(--color-surfaceSecondary);
+}
+
+.tableHeaderRowDark {
+  background-color: var(--color-surfaceSecondary);
+}
+
+.tableHeader {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.tableHeaderLight {
+  color: var(--color-textPrimary);
+}
+
+.tableHeaderDark {
+  color: var(--color-textPrimary);
+}
+
+.bookingRow {
+  border-bottom: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.bookingRowLight:hover {
+  background-color: var(--color-hover);
+}
+
+.bookingRowDark:hover {
+  background-color: var(--color-hover);
+}
+
+.bookingRow:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
+}
+
+/* Cancelled booking styling */
+.bookingRowCancelled {
+  opacity: 0.6;
+}
+
+.bookingRowCancelledLight {
+  background-color: rgba(239, 68, 68, 0.05);
+}
+
+.bookingRowCancelledDark {
+  background-color: rgba(239, 68, 68, 0.1);
+}
+
+.bookingRowCancelledLight:hover {
+  background-color: rgba(239, 68, 68, 0.1);
+}
+
+.bookingRowCancelledDark:hover {
+  background-color: rgba(239, 68, 68, 0.15);
+}
+
+.tableCell {
+  padding: 0.75rem 1rem;
+}
+
+.tableCellLight {
+  color: var(--color-textPrimary);
+}
+
+.tableCellDark {
+  color: var(--color-textPrimary);
+}
+
+/* Status Badges */
+.statusBadge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.statusBadgeConfirmedLight {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.statusBadgeConfirmedDark {
+  background-color: rgba(34, 197, 94, 0.2);
+  color: var(--color-success);
+}
+
+.statusBadgePendingLight {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.statusBadgePendingDark {
+  background-color: rgba(245, 158, 11, 0.2);
+  color: var(--color-warning);
+}
+
+.statusBadgeCancelledLight {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.statusBadgeCancelledDark {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: var(--color-error);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .filtersContainer {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .pageHeader {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .bookingsTableContainer {
+    font-size: 0.875rem;
+  }
+
+  .tableHeader,
+  .tableCell {
+    padding: 0.5rem;
+  }
+}
+
+/* Accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .bookingRow:focus {
+    outline-width: 3px;
+  }
+
+  .statusBadge {
+    border: 1px solid currentColor;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .loadingSpinner {
+    animation: none;
+  }
+
+  .btnPrimary,
+  .btnSecondary,
+  .btnLink,
+  .searchInput,
+  .filterSelect,
+  .dateInput,
+  .bookingRow {
+    transition: none;
+  }
+}

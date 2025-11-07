@@ -1,0 +1,152 @@
+/* ToastNotification CSS Module */
+
+.toast {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  z-index: 1100;
+  min-width: 300px;
+  max-width: 500px;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  cursor: pointer;
+  animation: slideIn 0.3s ease-out;
+  border-left: 4px solid;
+}
+
+.toastLight {
+  background: var(--color-surface);
+  color: var(--color-text);
+  border-color: var(--color-primary);
+}
+
+.toastDark {
+  background: var(--color-surface);
+  color: var(--color-text);
+  border-color: var(--color-primary);
+}
+
+.toastSuccess {
+  border-left-color: var(--color-success);
+}
+
+.toastError {
+  border-left-color: var(--color-error);
+}
+
+.toastWarning {
+  border-left-color: var(--color-warning);
+}
+
+.toastInfo {
+  border-left-color: var(--color-info);
+}
+
+.toastContent {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.toastIcon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+}
+
+.toastSuccessLight .toastIcon {
+  background: var(--color-success);
+}
+
+.toastSuccessDark .toastIcon {
+  background: var(--color-success);
+}
+
+.toastErrorLight .toastIcon {
+  background: var(--color-error);
+}
+
+.toastErrorDark .toastIcon {
+  background: var(--color-error);
+}
+
+.toastWarningLight .toastIcon {
+  background: var(--color-warning);
+}
+
+.toastWarningDark .toastIcon {
+  background: var(--color-warning);
+}
+
+.toastInfoLight .toastIcon {
+  background: var(--color-info);
+}
+
+.toastInfoDark .toastIcon {
+  background: var(--color-info);
+}
+
+.toastMessage {
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.toastClose {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.toastCloseLight {
+  color: var(--color-textMuted);
+}
+
+.toastCloseDark {
+  color: var(--color-textMuted);
+}
+
+.toastClose:hover {
+  opacity: 1;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+  .toast {
+    top: 1rem;
+    right: 1rem;
+    left: 1rem;
+    min-width: auto;
+    max-width: none;
+  }
+}

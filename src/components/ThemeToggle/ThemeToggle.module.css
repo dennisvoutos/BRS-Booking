@@ -1,0 +1,190 @@
+/* ThemeToggle CSS Module */
+
+.themeToggle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.themeToggleLight {
+  color: var(--color-textSecondary);
+}
+
+.themeToggleLight:hover {
+  background: var(--color-hover);
+  color: var(--color-textPrimary);
+}
+
+.themeToggleDark {
+  color: var(--color-textSecondary);
+}
+
+.themeToggleDark:hover {
+  background: var(--color-hover);
+  color: var(--color-textPrimary);
+}
+
+.themeToggle:focus {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.themeToggleTrack {
+  position: relative;
+  width: 3rem;
+  height: 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-border);
+  transition: all 0.3s ease;
+}
+
+.themeToggleTrackLight {
+  background: var(--color-surfaceSecondary);
+}
+
+.themeToggleTrackDark {
+  background: var(--color-surfaceTertiary);
+}
+
+.themeToggleThumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--color-shadow) 0 2px 4px;
+}
+
+.themeToggleThumbLight {
+  background: var(--color-surface);
+}
+
+.themeToggleThumbDark {
+  transform: translateX(1.5rem);
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.themeIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  font-size: 0.75rem;
+}
+
+.themeIconLight {
+  color: var(--color-textMuted);
+}
+
+.themeIconDark {
+  color: var(--color-surface);
+}
+
+.themeToggleLabel {
+  user-select: none;
+  transition: color 0.3s ease;
+}
+
+/* Hover effects */
+.themeToggle:hover .themeToggleTrack {
+  border-color: var(--color-primary);
+}
+
+.themeToggle:hover .themeToggleThumb {
+  box-shadow: var(--color-shadow) 0 4px 8px, var(--color-primary) 0 0 0 2px;
+}
+
+/* Animation for mode change */
+@keyframes themeChange {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.themeToggleThumb {
+  animation: themeChange 0.3s ease;
+}
+
+/* Compact variant */
+.themeToggle.compact {
+  gap: 0.5rem;
+  padding: 0.25rem;
+}
+
+.themeToggle.compact .themeToggleLabel {
+  display: none;
+}
+
+/* Header variant styles */
+.themeToggle.headerToggle {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.themeToggle.headerToggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.themeToggle.headerToggle .themeToggleTrack {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.themeToggle.headerToggle .themeToggleThumb {
+  background: white;
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.themeToggle.headerToggle:hover .themeToggleTrack {
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.themeToggle.headerToggle:hover .themeToggleThumb {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 0 0 2px rgba(255, 255, 255, 0.4);
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .themeToggleThumb,
+  .themeToggleTrack,
+  .themeIcon {
+    transition: none;
+  }
+
+  .themeToggleThumb {
+    animation: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .themeToggleTrack {
+    border-width: 2px;
+  }
+
+  .themeToggleThumb {
+    border-width: 2px;
+  }
+}

@@ -1,38 +1,89 @@
+/* CSS Custom Properties for theming */
+:root {
+  /* Light theme (Beige palette) */
+  --color-surface: #fcfbf8;
+  --color-surfaceSecondary: #f8f5f0;
+  --color-surfaceTertiary: #f3efea;
+  --color-textPrimary: #2c2c2c;
+  --color-textSecondary: #5a5a5a;
+  --color-textMuted: #8a8a8a;
+  --color-primary: #d4995d;
+  --color-primaryDark: #b8844f;
+  --color-success: #0f7b0f;
+  --color-warning: #ff6b35;
+  --color-error: #d73527;
+  --color-border: #e0ddd6;
+  --color-hover: rgba(212, 153, 93, 0.1);
+  --color-focus: #d4995d;
+  --color-shadow: rgba(44, 44, 44, 0.1);
+}
+
+[data-theme="dark"] {
+  /* Dark theme (Dark blue palette) */
+  --color-surface: #0f1419;
+  --color-surfaceSecondary: #1a1f2e;
+  --color-surfaceTertiary: #252b3d;
+  --color-textPrimary: #f0f4f8;
+  --color-textSecondary: #c5d1e0;
+  --color-textMuted: #8b9baf;
+  --color-primary: #4a90e2;
+  --color-primaryDark: #357abd;
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-border: #374151;
+  --color-hover: rgba(74, 144, 226, 0.1);
+  --color-focus: #4a90e2;
+  --color-shadow: rgba(0, 0, 0, 0.2);
+}
+
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  background-color: var(--color-surface);
+  color: var(--color-textPrimary);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background: linear-gradient(135deg, #1e40af, #3b82f6);
   color: white;
+  padding: 1rem 2rem;
+  box-shadow: var(--color-shadow) 0 2px 8px;
 }
 
-.App-link {
-  color: #61dafb;
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.header-branding h1 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.header-branding p {
+  font-size: 0.875rem;
+  opacity: 0.9;
+}
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
 }

@@ -1,0 +1,379 @@
+/* CreateBookingForm CSS Module */
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.modalOverlayLight {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modalOverlayDark {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.modalContent {
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: var(--color-shadow) 0 10px 25px;
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+.modalContentLight {
+  background: var(--color-surface);
+}
+
+.modalContentDark {
+  background: var(--color-surface);
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.modalTitle {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.modalTitleLight {
+  color: var(--color-textPrimary);
+}
+
+.modalTitleDark {
+  color: var(--color-textPrimary);
+}
+
+.modalClose {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  line-height: 1;
+  transition: background-color 0.2s ease;
+}
+
+.modalCloseLight {
+  color: var(--color-textMuted);
+}
+
+.modalCloseLight:hover {
+  background: var(--color-hover);
+  color: var(--color-textPrimary);
+}
+
+.modalCloseDark {
+  color: var(--color-textMuted);
+}
+
+.modalCloseDark:hover {
+  background: var(--color-hover);
+  color: var(--color-textPrimary);
+}
+
+.modalBody {
+  padding: 2rem;
+  overflow-y: auto;
+  max-height: calc(90vh - 100px);
+}
+
+.bookingForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.formLabel {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.formLabelLight {
+  color: var(--color-textPrimary);
+}
+
+.formLabelDark {
+  color: var(--color-textPrimary);
+}
+
+.formInput,
+.formSelect {
+  padding: 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  background: var(--color-surface);
+  color: var(--color-textPrimary);
+}
+
+.formInput:focus,
+.formSelect:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-hover);
+}
+
+.formInput:disabled,
+.formSelect:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.inputError {
+  border-color: var(--color-error) !important;
+}
+
+.inputError:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.errorMessage {
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-top: 0.25rem;
+}
+
+.errorMessageLight {
+  color: var(--color-error);
+}
+
+.errorMessageDark {
+  color: var(--color-error);
+}
+
+.submitMessage {
+  padding: 0.75rem 1rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.submitMessageSuccess {
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid var(--color-success);
+}
+
+.submitMessageSuccessLight {
+  color: var(--color-success);
+}
+
+.submitMessageSuccessDark {
+  color: var(--color-success);
+}
+
+.submitMessageError {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid var(--color-error);
+}
+
+.submitMessageErrorLight {
+  color: var(--color-error);
+}
+
+.submitMessageErrorDark {
+  color: var(--color-error);
+}
+
+.formActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.btnPrimary,
+.btnSecondary {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  border: 1px solid transparent;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btnPrimary:disabled,
+.btnSecondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btnPrimaryLight {
+  background-color: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.btnPrimaryLight:hover:not(:disabled) {
+  background-color: var(--color-primaryDark);
+  border-color: var(--color-primaryDark);
+}
+
+.btnPrimaryDark {
+  background-color: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.btnPrimaryDark:hover:not(:disabled) {
+  background-color: var(--color-primaryDark);
+  border-color: var(--color-primaryDark);
+}
+
+.btnSecondaryLight {
+  background-color: var(--color-surface);
+  color: var(--color-textPrimary);
+  border-color: var(--color-border);
+}
+
+.btnSecondaryLight:hover:not(:disabled) {
+  background-color: var(--color-surfaceSecondary);
+  border-color: var(--color-textMuted);
+}
+
+.btnSecondaryDark {
+  background-color: var(--color-surface);
+  color: var(--color-textPrimary);
+  border-color: var(--color-border);
+}
+
+.btnSecondaryDark:hover:not(:disabled) {
+  background-color: var(--color-surfaceSecondary);
+  border-color: var(--color-textMuted);
+}
+
+.btnDanger {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  border: 1px solid transparent;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btnDanger:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btnDangerLight {
+  background-color: var(--color-error);
+  color: white;
+  border-color: var(--color-error);
+}
+
+.btnDangerLight:hover:not(:disabled) {
+  background-color: var(--color-errorDark);
+  border-color: var(--color-errorDark);
+}
+
+.btnDangerDark {
+  background-color: var(--color-error);
+  color: white;
+  border-color: var(--color-error);
+}
+
+.btnDangerDark:hover:not(:disabled) {
+  background-color: var(--color-errorDark);
+  border-color: var(--color-errorDark);
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+  .modalContent {
+    margin: 0;
+    max-height: 100vh;
+    border-radius: 0;
+  }
+
+  .modalBody {
+    padding: 1.5rem;
+  }
+
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+
+  .formActions {
+    flex-direction: column;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .modalContent {
+    border: 2px solid var(--color-border);
+  }
+
+  .inputError {
+    border-width: 2px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .modalContent {
+    animation: none;
+  }
+
+  .formInput,
+  .formSelect,
+  .btnPrimary,
+  .btnSecondary,
+  .btnDanger,
+  .modalClose {
+    transition: none;
+  }
+}

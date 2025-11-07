@@ -1,0 +1,704 @@
+/* BookingDetailModal CSS Module */
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.modalOverlayLight {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modalOverlayDark {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.modalContent {
+  width: 100%;
+  max-width: 800px;
+  max-height: 90vh;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: var(--color-shadow) 0 20px 25px;
+  animation: modalSlideIn 0.3s ease-out;
+  display: flex;
+  flex-direction: column;
+}
+
+.modalContentLight {
+  background: var(--color-surface);
+}
+
+.modalContentDark {
+  background: var(--color-surface);
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 2rem 1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.modalTitleSection {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.modalTitle {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.modalTitleLight {
+  color: var(--color-textPrimary);
+}
+
+.modalTitleDark {
+  color: var(--color-textPrimary);
+}
+
+.bookingIdBadge {
+  background: var(--color-primary);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.modalCloseBtn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  line-height: 1;
+  transition: background-color 0.2s ease;
+}
+
+.modalCloseBtnLight {
+  color: var(--color-textMuted);
+}
+
+.modalCloseBtnLight:hover {
+  background: var(--color-hover);
+  color: var(--color-textPrimary);
+}
+
+.modalCloseBtnDark {
+  color: var(--color-textMuted);
+}
+
+.modalCloseBtnDark:hover {
+  background: var(--color-hover);
+  color: var(--color-textPrimary);
+}
+
+.modalCloseBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.modalCloseBtn:disabled:hover {
+  background: none !important;
+  color: inherit !important;
+}
+
+.modalCloseBtn:focus {
+  outline: none;
+}
+
+.modalCloseBtn:active {
+  transform: scale(0.95);
+  outline: none;
+}
+
+.modalBody {
+  padding: 2rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.detailSection {
+  margin-bottom: 2rem;
+}
+
+.detailSection:last-child {
+  margin-bottom: 0;
+}
+
+.sectionTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+}
+
+.sectionTitleLight {
+  color: var(--color-textPrimary);
+}
+
+.sectionTitleDark {
+  color: var(--color-textPrimary);
+}
+
+.statusContainer {
+  display: flex;
+  align-items: center;
+}
+
+.statusBadgeLarge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.detailGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.detailValue {
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.detailValueLight {
+  color: var(--color-textPrimary);
+}
+
+.detailValueDark {
+  color: var(--color-textPrimary);
+}
+
+.dateInfoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.dateItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.dateLabel {
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.dateLabelLight {
+  color: var(--color-textSecondary);
+}
+
+.dateLabelDark {
+  color: var(--color-textSecondary);
+}
+
+.dateValue {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.dateValueLight {
+  color: var(--color-textPrimary);
+}
+
+.dateValueDark {
+  color: var(--color-textPrimary);
+}
+
+.durationHighlight {
+  font-weight: 600;
+}
+
+.durationHighlightLight {
+  color: var(--color-primary);
+}
+
+.durationHighlightDark {
+  color: var(--color-primary);
+}
+
+.summarySection {
+  border-top: 1px solid var(--color-border);
+  padding-top: 2rem;
+}
+
+.summaryCard {
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+}
+
+.summaryCardLight {
+  background: var(--color-surfaceSecondary);
+}
+
+.summaryCardDark {
+  background: var(--color-surfaceSecondary);
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.summaryRow:last-child {
+  border-bottom: none;
+}
+
+.summaryLabel {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.summaryLabelLight {
+  color: var(--color-textSecondary);
+}
+
+.summaryLabelDark {
+  color: var(--color-textSecondary);
+}
+
+.summaryValue {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-align: right;
+}
+
+.summaryValueLight {
+  color: var(--color-textPrimary);
+}
+
+.summaryValueDark {
+  color: var(--color-textPrimary);
+}
+
+.statusBadgeSmall {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.errorMessage {
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.errorMessageLight {
+  background: var(--color-errorSurface);
+  color: var(--color-error);
+  border: 1px solid var(--color-error);
+}
+
+.errorMessageDark {
+  background: var(--color-errorSurface);
+  color: var(--color-error);
+  border: 1px solid var(--color-error);
+}
+
+.modalFooter {
+  padding: 1.5rem 2rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.modalFooterLight {
+  background: var(--color-surfaceSecondary);
+}
+
+.modalFooterDark {
+  background: var(--color-surfaceSecondary);
+}
+
+.actionButtons {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.btnPrimary,
+.btnSuccess,
+.btnDanger,
+.btnWarning,
+.btnSecondary {
+  padding: 0.75rem 1rem;
+  border-radius: 0.375rem;
+  border: 1px solid transparent;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 0 1 auto;
+  min-width: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.btnPrimary:disabled,
+.btnSuccess:disabled,
+.btnDanger:disabled,
+.btnWarning:disabled,
+.btnSecondary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.btnPrimary:focus,
+.btnSuccess:focus,
+.btnDanger:focus,
+.btnWarning:focus,
+.btnSecondary:focus {
+  outline: none;
+}
+
+.btnPrimary:active,
+.btnSuccess:active,
+.btnDanger:active,
+.btnWarning:active,
+.btnSecondary:active {
+  transform: translateY(1px);
+  outline: none;
+}
+
+/* Loading spinner animation */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.btnPrimary:disabled svg,
+.btnSuccess:disabled svg,
+.btnDanger:disabled svg,
+.btnWarning:disabled svg,
+.btnSecondary:disabled svg {
+  animation: spin 1s linear infinite;
+}
+
+.btnPrimaryLight {
+  background-color: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.btnPrimaryLight:hover {
+  background-color: var(--color-primaryHover);
+  border-color: var(--color-primaryHover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(212, 153, 93, 0.3);
+}
+
+.btnSuccessLight {
+  background-color: var(--color-success);
+  color: white;
+  border-color: var(--color-success);
+}
+
+.btnSuccessLight:hover {
+  background-color: #6b8471;
+  border-color: #6b8471;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(124, 152, 133, 0.3);
+}
+
+.btnPrimaryDark {
+  background-color: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.btnPrimaryDark:hover {
+  background-color: var(--color-primaryHover);
+  border-color: var(--color-primaryHover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+}
+
+.btnSuccessDark {
+  background-color: var(--color-success);
+  color: white;
+  border-color: var(--color-success);
+}
+
+.btnSuccessDark:hover {
+  background-color: var(--color-successLight);
+  border-color: var(--color-successLight);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(104, 211, 145, 0.3);
+}
+
+.btnDangerLight {
+  background-color: var(--color-error);
+  color: white;
+  border-color: var(--color-error);
+}
+
+.btnDangerLight:hover {
+  background-color: #b36b6b;
+  border-color: #b36b6b;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(196, 121, 121, 0.3);
+}
+
+.btnDangerDark {
+  background-color: var(--color-error);
+  color: white;
+  border-color: var(--color-error);
+}
+
+.btnDangerDark:hover {
+  background-color: var(--color-errorLight);
+  border-color: var(--color-errorLight);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(245, 101, 101, 0.3);
+}
+
+.btnWarningLight {
+  background-color: var(--color-warning);
+  color: white;
+  border-color: var(--color-warning);
+}
+
+.btnWarningLight:hover {
+  background-color: #c59666;
+  border-color: #c59666;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(212, 165, 116, 0.3);
+}
+
+.btnWarningDark {
+  background-color: var(--color-warning);
+  color: white;
+  border-color: var(--color-warning);
+}
+
+.btnWarningDark:hover {
+  background-color: var(--color-warningLight);
+  border-color: var(--color-warningLight);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(237, 137, 54, 0.3);
+}
+
+.btnSecondaryLight {
+  background-color: var(--color-surface);
+  color: var(--color-textPrimary);
+  border-color: var(--color-border);
+}
+
+.btnSecondaryLight:hover {
+  background-color: var(--color-surfaceSecondary);
+  border-color: var(--color-textMuted);
+}
+
+.btnSecondaryDark {
+  background-color: var(--color-surface);
+  color: var(--color-textPrimary);
+  border-color: var(--color-border);
+}
+
+.btnSecondaryDark:hover {
+  background-color: var(--color-surfaceSecondary);
+  border-color: var(--color-textMuted);
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+  .actionButtons {
+    gap: 0.5rem;
+  }
+
+  .btnPrimary,
+  .btnSuccess,
+  .btnDanger,
+  .btnWarning,
+  .btnSecondary {
+    padding: 0.625rem 0.75rem;
+    font-size: 0.8125rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .modalContent {
+    max-height: 100vh;
+    border-radius: 0;
+    margin: 0;
+  }
+
+  .modalHeader {
+    padding: 1.5rem 1.5rem 1rem;
+  }
+
+  .modalBody {
+    padding: 1.5rem;
+  }
+
+  .modalFooter {
+    padding: 1rem 1.5rem;
+  }
+
+  .detailGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .dateInfoGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .actionButtons {
+    justify-content: stretch;
+  }
+
+  .btnPrimary,
+  .btnSuccess,
+  .btnDanger,
+  .btnWarning,
+  .btnSecondary {
+    flex: 1;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .modalTitleSection {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .modalTitle {
+    font-size: 1.5rem;
+  }
+
+  .actionButtons {
+    flex-direction: column;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .modalContent {
+    border: 2px solid var(--color-border);
+  }
+
+  .statusBadgeLarge,
+  .statusBadgeSmall {
+    border-width: 2px;
+  }
+}
+
+/* Confirmation Modal Styles */
+.confirmationModal {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: var(--color-shadow) 0 20px 25px;
+}
+
+.confirmationModalLight {
+  background: var(--color-surface);
+}
+
+.confirmationModalDark {
+  background: var(--color-surface);
+}
+
+.confirmationHeader {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.confirmationTitle {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-textPrimary);
+}
+
+.confirmationBody {
+  padding: 1.5rem;
+}
+
+.confirmationMessage {
+  margin: 0;
+  color: var(--color-textSecondary);
+  line-height: 1.5;
+}
+
+.confirmationActions {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .modalContent {
+    animation: none;
+  }
+
+  .btnPrimary,
+  .btnSuccess,
+  .btnDanger,
+  .btnWarning,
+  .btnSecondary,
+  .modalCloseBtn {
+    transition: none;
+  }
+}
