@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { useTheme } from "../../contexts/ThemeContext";
 import { useToast } from "../../contexts/ToastContext";
 import { useBookings } from "../../hooks/useBookings";
+import { useWelcomeModal } from "../../hooks/useSessionStorage";
 import { formatDateRange, calculateDuration } from "../../utils/bookingUtils";
 import { getThemeClass } from "../../utils/themeUtils";
 import BookingDetailModal from "../BookingDetailModal/BookingDetailModal";
 import CreateBookingForm from "../CreateBookingForm/CreateBookingForm";
 import LoadingSkeleton from "../LoadingSkeleton/LoadingSkeleton";
 import SearchAndFilters from "../SearchAndFilters/SearchAndFilters";
+import WelcomeModal from "../WelcomeModal/WelcomeModal";
 import {
   PlusOutlined,
   ClearOutlined,
@@ -62,6 +64,9 @@ const BookingsPage = () => {
     updateBookingStatus,
     updateBooking,
   } = useBookings();
+
+  // Welcome modal state management
+  const [hasSeenWelcome, markWelcomeAsSeen] = useWelcomeModal();
 
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [editingBooking, setEditingBooking] = useState(null);
@@ -828,6 +833,9 @@ const BookingsPage = () => {
           editingBooking={editingBooking}
         />
       )}
+
+      {/* Welcome Modal - Shows only on first visit */}
+      <WelcomeModal isOpen={!hasSeenWelcome} onClose={markWelcomeAsSeen} />
     </div>
   );
 };

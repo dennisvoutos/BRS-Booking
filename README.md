@@ -10,6 +10,7 @@ The application is deployed on GitHub Pages and fully functional online.
 
 ## ✨ Features
 
+- **Welcome Experience**: Interactive onboarding modal showcasing key features (shows once per session)
 - **Search & Filter**: Search bookings by customer name, filter by status and date range
 - **Greek Date Format**: DD/MM/YYYY date display and input with custom calendar picker
 - **Responsive Design**: Works seamlessly on desktop, tablet, and mobile devices
@@ -17,7 +18,7 @@ The application is deployed on GitHub Pages and fully functional online.
 - **State Management**: Loading, empty, and error states with graceful error handling
 - **Form Validation**: Comprehensive client-side validation with real-time feedback
 - **Mock API**: Simulated network calls with realistic delays and error scenarios
-- **Comprehensive Testing**: Unit tests for critical functionality
+- **Comprehensive Testing**: 154 comprehensive unit and integration tests
 
 ## 🛠 Technology Stack
 
@@ -35,6 +36,7 @@ src/
 │   ├── BookingsPage/          # Main bookings management
 │   ├── BookingDetailModal/    # Booking details modal
 │   ├── CreateBookingForm/     # Create/edit booking form
+│   ├── WelcomeModal/          # Onboarding welcome experience
 │   ├── GreekDateInput/        # Custom Greek date picker
 │   ├── SearchAndFilters/      # Search and filter controls
 │   ├── LoadingSkeleton/       # Loading state components
@@ -45,7 +47,8 @@ src/
 │   └── ToastContext.js       # Toast notifications
 ├── hooks/                # Custom React hooks
 │   ├── useBookings.js        # Bookings data management
-│   └── useKeyboardNavigation.js  # Accessibility navigation
+│   ├── useKeyboardNavigation.js  # Accessibility navigation
+│   └── useSessionStorage.js  # Session storage management
 ├── services/             # API services
 │   └── bookingService.js     # Mock API with network simulation
 ├── data/                # Static data and constants
@@ -96,17 +99,26 @@ src/
 
 ## 🧪 Testing
 
-The application includes comprehensive tests for:
+The application includes **154 comprehensive tests** covering:
 - Search and filter functionality
-- Form validation
-- Loading and error states
-- User interactions
-- Accessibility features
+- Form validation and user interactions
+- Loading, error, and empty states
+- Welcome modal and onboarding experience
+- Accessibility features and keyboard navigation
+- Session storage management
+- Component rendering in light/dark themes
 
 Run tests with:
 ```bash
 npm test
 ```
+
+### Test Coverage
+- **9 test suites** covering all major components
+- **154 individual tests** ensuring reliable functionality
+- **Unit tests** for hooks, utilities, and components
+- **Integration tests** for user workflows
+- **Accessibility tests** for WCAG compliance
 
 ## 🚢 Deployment
 
