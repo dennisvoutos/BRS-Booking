@@ -5,21 +5,71 @@
  */
 
 /**
- * Formats a date string into a human-readable format.
+ * Formats a date string into a human-readable format using Greek locale (DD/MM/YYYY).
  *
  * @param {string} dateString - The date string to format (YYYY-MM-DD format)
- * @returns {string} Formatted date string (e.g., "Jan 15, 2024")
+ * @returns {string} Formatted date string (e.g., "15/01/2024")
  *
  * @example
- * formatDate('2024-01-15') // Returns "Jan 15, 2024"
+ * formatDate('2024-01-15') // Returns "15/01/2024"
  */
 export const formatDate = (dateString) => {
   const date = new Date(dateString);
-  return date.toLocaleDateString("en-US", {
+  return date.toLocaleDateString("el-GR", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+};
+
+/**
+ * Formats a date string into a human-readable format with Greek month names.
+ *
+ * @param {string} dateString - The date string to format (YYYY-MM-DD format)
+ * @returns {string} Formatted date string (e.g., "15 Ιαν 2024")
+ *
+ * @example
+ * formatDateWithMonthName('2024-01-15') // Returns "15 Ιαν 2024"
+ */
+export const formatDateWithMonthName = (dateString) => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString("el-GR", {
     year: "numeric",
     month: "short",
     day: "numeric",
   });
+};
+
+/**
+ * Converts DD/MM/YYYY string to YYYY-MM-DD format for HTML date inputs.
+ *
+ * @param {string} greekDateString - Date string in DD/MM/YYYY format
+ * @returns {string} Date string in YYYY-MM-DD format
+ *
+ * @example
+ * greekToISO('15/01/2024') // Returns "2024-01-15"
+ */
+export const greekToISO = (greekDateString) => {
+  if (!greekDateString || !greekDateString.includes("/")) return "";
+
+  const [day, month, year] = greekDateString.split("/");
+  return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+};
+
+/**
+ * Converts YYYY-MM-DD string to DD/MM/YYYY format for display.
+ *
+ * @param {string} isoDateString - Date string in YYYY-MM-DD format
+ * @returns {string} Date string in DD/MM/YYYY format
+ *
+ * @example
+ * isoToGreek('2024-01-15') // Returns "15/01/2024"
+ */
+export const isoToGreek = (isoDateString) => {
+  if (!isoDateString) return "";
+
+  const [year, month, day] = isoDateString.split("-");
+  return `${day}/${month}/${year}`;
 };
 
 /**

@@ -669,7 +669,7 @@ const BookingsPage = () => {
             {bookings.map((booking) => (
               <div key={booking.id} className={styles.bookingCard}>
                 <div className={styles.cardHeader}>
-                  <h3 className={styles.cardTitle}>{booking.clientName}</h3>
+                  <h3 className={styles.cardTitle}>{booking.customer}</h3>
                   <span
                     className={
                       styles[
@@ -689,20 +689,18 @@ const BookingsPage = () => {
 
                 <div className={styles.cardContent}>
                   <div className={styles.cardRow}>
-                    <strong>Service:</strong> {booking.service}
+                    <strong>Vessel:</strong> {booking.vessel}
                   </div>
                   <div className={styles.cardRow}>
-                    <strong>Date:</strong>{" "}
-                    {new Date(booking.date).toLocaleDateString()}
+                    <strong>Date Range:</strong>{" "}
+                    {formatDateRange(booking.startDate, booking.endDate)}
                   </div>
                   <div className={styles.cardRow}>
-                    <strong>Time:</strong> {booking.time}
+                    <strong>Duration:</strong>{" "}
+                    {calculateDuration(booking.startDate, booking.endDate)} days
                   </div>
                   <div className={styles.cardRow}>
-                    <strong>Phone:</strong> {booking.phone}
-                  </div>
-                  <div className={styles.cardRow}>
-                    <strong>Email:</strong> {booking.email}
+                    <strong>Booking ID:</strong> {booking.id}
                   </div>
                 </div>
 
@@ -719,7 +717,7 @@ const BookingsPage = () => {
                       ]
                     }`}
                     disabled={processingBookingId !== null}
-                    aria-label={`View details for ${booking.clientName}'s booking`}
+                    aria-label={`View details for ${booking.customer}'s booking`}
                   >
                     View Details
                   </button>
@@ -740,7 +738,7 @@ const BookingsPage = () => {
                       title={getStatusToggleTooltip(booking.status)}
                       aria-label={`${getStatusToggleTooltip(
                         booking.status
-                      )} for ${booking.clientName}'s booking`}
+                      )} for ${booking.customer}'s booking`}
                     >
                       {getStatusToggleIcon(booking.status)}
                       {booking.status === "pending" && " Confirm"}
@@ -762,7 +760,7 @@ const BookingsPage = () => {
                       }`}
                       disabled={processingBookingId !== null}
                       title="Delete booking"
-                      aria-label={`Delete ${booking.clientName}'s booking`}
+                      aria-label={`Delete ${booking.customer}'s booking`}
                     >
                       <DeleteOutlined /> Delete
                     </button>
