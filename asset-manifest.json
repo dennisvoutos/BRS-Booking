@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/BRS-Booking/static/css/main.b20376f3.css",
-    "main.js": "/BRS-Booking/static/js/main.06f1a1d3.js",
+    "main.js": "/BRS-Booking/static/js/main.ce6f5a8c.js",
     "static/js/453.f471016c.chunk.js": "/BRS-Booking/static/js/453.f471016c.chunk.js",
     "index.html": "/BRS-Booking/index.html",
     "main.b20376f3.css.map": "/BRS-Booking/static/css/main.b20376f3.css.map",
-    "main.06f1a1d3.js.map": "/BRS-Booking/static/js/main.06f1a1d3.js.map",
+    "main.ce6f5a8c.js.map": "/BRS-Booking/static/js/main.ce6f5a8c.js.map",
     "453.f471016c.chunk.js.map": "/BRS-Booking/static/js/453.f471016c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b20376f3.css",
-    "static/js/main.06f1a1d3.js"
+    "static/js/main.ce6f5a8c.js"
   ]
 }
