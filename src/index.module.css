@@ -1,4 +1,4 @@
-body {
+:global(body) {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -8,13 +8,13 @@ body {
   background-color: #fff0c4;
 }
 
-code {
+:global(code) {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
 /* Global utility classes */
-.sr-only {
+:global(.sr-only) {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -27,7 +27,7 @@ code {
 }
 
 /* Skip link for screen readers */
-.skip-link {
+:global(.skip-link) {
   position: absolute;
   top: -40px;
   left: 6px;
@@ -40,45 +40,45 @@ code {
   transition: top 0.3s;
 }
 
-.skip-link:focus {
+:global(.skip-link:focus) {
   top: 0;
 }
 
 /* Enhanced focus styles for accessibility */
-*:focus {
+:global(*:focus) {
   outline: 2px solid #3b82f6;
   outline-offset: 2px;
 }
 
-*:focus:not(:focus-visible) {
+:global(*:focus:not(:focus-visible)) {
   outline: none;
 }
 
-*:focus-visible {
+:global(*:focus-visible) {
   outline: 2px solid #3b82f6;
   outline-offset: 2px;
 }
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
-  * {
+  :global(*) {
     border-color: ButtonText;
   }
 
-  .btn {
+  :global(.btn) {
     border: 2px solid ButtonText;
   }
 
-  .status-badge {
+  :global(.status-badge) {
     border: 1px solid ButtonText;
   }
 }
 
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  :global(*),
+  :global(*::before),
+  :global(*::after) {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -87,29 +87,29 @@ code {
 }
 
 /* Improved focus for interactive elements */
-button:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible,
-[role="button"]:focus-visible {
+:global(button:focus-visible),
+:global(input:focus-visible),
+:global(select:focus-visible),
+:global(textarea:focus-visible),
+:global([role="button"]:focus-visible) {
   outline: 2px solid #3b82f6;
   outline-offset: 2px;
   box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
 }
 
 /* Ensure sufficient color contrast */
-.booking-row:hover {
+:global(.booking-row:hover) {
   background-color: #f8fafc;
   border-color: #e2e8f0;
 }
 
-.booking-row:focus {
+:global(.booking-row:focus) {
   background-color: #eff6ff;
   border-color: #3b82f6;
 }
 
 /* Screen reader announcements */
-[aria-live] {
+:global([aria-live]) {
   position: absolute;
   left: -10000px;
   width: 1px;

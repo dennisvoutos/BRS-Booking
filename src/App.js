@@ -1,4 +1,4 @@
-import "./App.css";
+import styles from "./App.module.css";
 import BookingsPage from "./components/BookingsPage/BookingsPage";
 import ThemeToggle from "./components/ThemeToggle/ThemeToggle";
 
@@ -20,20 +20,20 @@ import ThemeToggle from "./components/ThemeToggle/ThemeToggle";
  */
 function App() {
   return (
-    <div className="App">
-      <a href="#main-content" className="skip-link sr-only">
+    <div className={styles.app}>
+      <a href="#main-content" className={`${styles.skipLink} ${styles.srOnly}`}>
         Skip to main content
       </a>
-      <header className="App-header">
-        <div className="header-content">
-          <div className="header-branding">
+      <header className={styles.appHeader}>
+        <div className={styles.headerContent}>
+          <div className={styles.headerBranding}>
             <h1>BRS Brokers</h1>
             <p>Vessel Booking Management System</p>
           </div>
-          <ThemeToggle className="header-toggle" />
+          <ThemeToggle className={styles.headerToggle} />
         </div>
       </header>
-      <main id="main-content">
+      <main id="main-content" className={styles.mainContent}>
         <BookingsPage />
       </main>
     </div>

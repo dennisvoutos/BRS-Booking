@@ -19,6 +19,47 @@
   flex: 1;
 }
 
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.viewToggle {
+  display: flex;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.viewToggle button {
+  padding: 0.5rem 0.75rem;
+  border: none;
+  background: var(--color-surface);
+  color: var(--color-textSecondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 0;
+  min-width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.viewToggle button:hover {
+  background: var(--color-hover);
+  color: var(--color-textPrimary);
+}
+
+.viewToggle button.active {
+  background: var(--color-primary);
+  color: white;
+}
+
+.viewToggle button:first-child {
+  border-right: 1px solid var(--color-border);
+}
+
 .headerTitle {
   font-size: 2rem;
   font-weight: 700;
@@ -202,6 +243,26 @@
   transform: scale(1.1);
 }
 
+.quickActionBtnDangerLight {
+  background: #dc2626;
+  color: white;
+}
+
+.quickActionBtnDangerLight:hover {
+  background: #b91c1c;
+  transform: scale(1.1);
+}
+
+.quickActionBtnDangerDark {
+  background: var(--color-error);
+  color: white;
+}
+
+.quickActionBtnDangerDark:hover {
+  background: var(--color-errorLight);
+  transform: scale(1.1);
+}
+
 .quickActionBtnRestore {
   background: var(--color-accent);
   color: white;
@@ -210,6 +271,28 @@
 .quickActionBtnRestore:hover {
   background: var(--color-accentLight);
   transform: scale(1.1);
+}
+
+/* Disabled states for quick action buttons */
+.quickActionBtn:disabled,
+.quickActionBtnSuccess:disabled,
+.quickActionBtnWarning:disabled,
+.quickActionBtnDanger:disabled,
+.quickActionBtnRestore:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none !important;
+  background: #cccccc !important;
+  color: #666666 !important;
+}
+
+.quickActionBtn:disabled:hover,
+.quickActionBtnSuccess:disabled:hover,
+.quickActionBtnWarning:disabled:hover,
+.quickActionBtnDanger:disabled:hover,
+.quickActionBtnRestore:disabled:hover {
+  transform: none !important;
+  background: #cccccc !important;
 }
 
 /* Confirmation Modal */
@@ -566,6 +649,12 @@
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  user-select: none;
+}
+
+.tableHeader:hover {
+  background-color: var(--color-hover);
 }
 
 .tableHeaderLight {
@@ -631,7 +720,7 @@
 /* Status Badges */
 .statusBadge {
   display: inline-block;
-  padding: 0.25rem 0.75rem;
+  padding: 0.5rem 1rem;
   border-radius: 9999px;
   font-size: 0.75rem;
   font-weight: 500;
@@ -639,31 +728,67 @@
 }
 
 .statusBadgeConfirmedLight {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: capitalize;
   background-color: #dcfce7;
   color: #166534;
 }
 
 .statusBadgeConfirmedDark {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: capitalize;
   background-color: rgba(34, 197, 94, 0.2);
   color: var(--color-success);
 }
 
 .statusBadgePendingLight {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: capitalize;
   background-color: #fef3c7;
   color: #92400e;
 }
 
 .statusBadgePendingDark {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: capitalize;
   background-color: rgba(245, 158, 11, 0.2);
   color: var(--color-warning);
 }
 
 .statusBadgeCancelledLight {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: capitalize;
   background-color: #fee2e2;
   color: #991b1b;
 }
 
 .statusBadgeCancelledDark {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: capitalize;
   background-color: rgba(239, 68, 68, 0.2);
   color: var(--color-error);
 }
@@ -714,6 +839,207 @@
   }
 }
 
+/* Card View Styles */
+.cardsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.bookingCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.bookingCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-primary);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.cardTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-textPrimary);
+  margin: 0;
+}
+
+.cardContent {
+  margin-bottom: 1.5rem;
+}
+
+.cardRow {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.cardRow strong {
+  color: var(--color-textPrimary);
+  margin-right: 0.5rem;
+  min-width: 60px;
+}
+
+.cardActions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.statusActions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.cardActions .actionButton {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+/* View Details button theme classes */
+.viewDetailsButtonLight {
+  background: #8b6f47 !important;
+  color: white !important;
+  border-color: #8b6f47 !important;
+}
+
+.viewDetailsButtonLight:hover:not(:disabled) {
+  background: #6d5537 !important;
+  border-color: #6d5537 !important;
+  transform: translateY(-1px);
+}
+
+.viewDetailsButtonDark {
+  background: #9ca3af !important;
+  color: white !important;
+  border-color: #9ca3af !important;
+}
+
+.viewDetailsButtonDark:hover:not(:disabled) {
+  background: #6b7280 !important;
+  border-color: #6b7280 !important;
+  transform: translateY(-1px);
+}
+
+.confirmButton {
+  background: var(--color-success) !important;
+  color: white !important;
+  border-color: var(--color-success) !important;
+  flex: 1;
+}
+
+.confirmButton:hover:not(:disabled) {
+  background: var(--color-successDark) !important;
+}
+
+.cancelButton {
+  background: var(--color-danger) !important;
+  color: white !important;
+  border-color: var(--color-danger) !important;
+  flex: 1;
+}
+
+.cancelButton:hover:not(:disabled) {
+  background: var(--color-dangerDark) !important;
+}
+
+.cancelButtonLight {
+  background: #dc2626 !important;
+  color: white !important;
+  border-color: #dc2626 !important;
+  flex: 1;
+}
+
+.cancelButtonLight:hover:not(:disabled) {
+  background: #b91c1c !important;
+  border-color: #b91c1c !important;
+}
+
+.cancelButtonDark {
+  background: var(--color-danger) !important;
+  color: white !important;
+  border-color: var(--color-danger) !important;
+  flex: 1;
+}
+
+.cancelButtonDark:hover:not(:disabled) {
+  background: var(--color-dangerDark) !important;
+}
+
+.warningButton {
+  background: var(--color-warning) !important;
+  color: white !important;
+  border-color: var(--color-warning) !important;
+  flex: 1;
+}
+
+.warningButton:hover:not(:disabled) {
+  background: var(--color-warningDark) !important;
+}
+
+.restoreButton {
+  background: var(--color-accent) !important;
+  color: white !important;
+  border-color: var(--color-accent) !important;
+  flex: 1;
+}
+
+.restoreButton:hover:not(:disabled) {
+  background: var(--color-accentDark) !important;
+}
+
+.cardActions .actionButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Responsive adjustments for cards */
+@media (max-width: 768px) {
+  .cardsContainer {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .bookingCard {
+    padding: 1rem;
+  }
+
+  .cardHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .statusActions {
+    flex-direction: column;
+  }
+}
+
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   .loadingSpinner {
@@ -726,7 +1052,9 @@
   .searchInput,
   .filterSelect,
   .dateInput,
-  .bookingRow {
+  .bookingRow,
+  .bookingCard {
     transition: none;
+    transform: none !important;
   }
 }

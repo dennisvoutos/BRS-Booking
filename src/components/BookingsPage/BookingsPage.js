@@ -17,6 +17,8 @@ import {
   ClockCircleOutlined,
   DeleteOutlined,
   FileTextOutlined,
+  TableOutlined,
+  AppstoreOutlined,
 } from "@ant-design/icons";
 import styles from "./BookingsPage.module.css";
 
@@ -66,6 +68,12 @@ const BookingsPage = () => {
   const [selectedBooking, setSelectedBooking] = useState(null);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [bookingToDelete, setBookingToDelete] = useState(null);
+  const [viewMode, setViewMode] = useState("table"); // "table" or "card"
+  const [processingBookingId, setProcessingBookingId] = useState(null); // Track which booking is being processed
+  const [sortConfig, setSortConfig] = useState({
+    column: null,
+    direction: null,
+  }); // Sorting state
 
   const handleBookingClick = (booking) => {
     setSelectedBooking(booking);
@@ -106,13 +114,19 @@ const BookingsPage = () => {
   };
 
   const handleDeleteBooking = (bookingId) => {
+    if (processingBookingId !== null) return;
+
     const booking = bookings.find((b) => b.id === bookingId);
     setBookingToDelete(booking);
     setShowDeleteConfirm(true);
   };
 
   const confirmDeleteBooking = async () => {
-    if (bookingToDelete) {
+    if (!bookingToDelete) return;
+
+    setProcessingBookingId(bookingToDelete.id);
+
+    try {
       const result = await deleteBooking(bookingToDelete.id);
       if (result.success) {
         console.log("Successfully deleted booking:", bookingToDelete.id);
@@ -120,14 +134,19 @@ const BookingsPage = () => {
         console.error("Failed to delete booking:", result.error);
         showError(`Failed to delete booking: ${result.error}`);
       }
+    } finally {
+      setProcessingBookingId(null);
+      setShowDeleteConfirm(false);
+      setBookingToDelete(null);
     }
-    setShowDeleteConfirm(false);
-    setBookingToDelete(null);
   };
 
   const handleStatusToggle = async (bookingId) => {
     const booking = bookings.find((b) => b.id === bookingId);
-    if (!booking) return;
+    if (!booking || processingBookingId !== null) return;
+
+    console.log(`Setting processing state for booking ${bookingId}`);
+    setProcessingBookingId(bookingId);
 
     let newStatus;
     switch (booking.status) {
@@ -147,12 +166,21 @@ const BookingsPage = () => {
     console.log(
       `Changing booking ${bookingId} status from ${booking.status} to ${newStatus}`
     );
-    const result = await updateBookingStatus(bookingId, newStatus);
-    if (result.success) {
-      console.log("Successfully updated booking status:", bookingId);
-    } else {
-      console.error("Failed to update booking status:", result.error);
-      showError(`Failed to update booking status: ${result.error}`);
+
+    try {
+      // Add a small delay to make the disabled state visible
+      await new Promise((resolve) => setTimeout(resolve, 300));
+
+      const result = await updateBookingStatus(bookingId, newStatus);
+      if (result.success) {
+        console.log("Successfully updated booking status:", bookingId);
+      } else {
+        console.error("Failed to update booking status:", result.error);
+        showError(`Failed to update booking status: ${result.error}`);
+      }
+    } finally {
+      console.log(`Clearing processing state for booking ${bookingId}`);
+      setProcessingBookingId(null);
     }
   };
 
@@ -182,6 +210,88 @@ const BookingsPage = () => {
     }
   };
 
+  const handleSort = (column) => {
+    let direction = "asc";
+
+    if (sortConfig.column === column) {
+      if (sortConfig.direction === "asc") {
+        direction = "desc";
+      } else if (sortConfig.direction === "desc") {
+        // Reset sorting (no sort)
+        setSortConfig({ column: null, direction: null });
+        return;
+      }
+    }
+
+    setSortConfig({ column, direction });
+  };
+
+  const getSortIcon = (column) => {
+    if (sortConfig.column !== column) {
+      return null; // No icon when not sorted
+    }
+
+    if (sortConfig.direction === "asc") {
+      return <span style={{ fontSize: "12px", marginLeft: "4px" }}>↑</span>;
+    } else if (sortConfig.direction === "desc") {
+      return <span style={{ fontSize: "12px", marginLeft: "4px" }}>↓</span>;
+    }
+
+    return null;
+  };
+
+  const sortedBookings = React.useMemo(() => {
+    if (!sortConfig.column || !sortConfig.direction) {
+      return bookings;
+    }
+
+    return [...bookings].sort((a, b) => {
+      let aValue = a[sortConfig.column];
+      let bValue = b[sortConfig.column];
+
+      // Handle different data types
+      switch (sortConfig.column) {
+        case "id":
+          // Convert to number for proper sorting
+          aValue = parseInt(aValue.replace(/[^\d]/g, ""), 10);
+          bValue = parseInt(bValue.replace(/[^\d]/g, ""), 10);
+          break;
+        case "startDate":
+        case "endDate":
+          // Convert to Date objects
+          aValue = new Date(aValue);
+          bValue = new Date(bValue);
+          break;
+        case "duration":
+          // Calculate duration in days for sorting
+          const aStart = new Date(a.startDate);
+          const aEnd = new Date(a.endDate);
+          const bStart = new Date(b.startDate);
+          const bEnd = new Date(b.endDate);
+          aValue = Math.ceil((aEnd - aStart) / (1000 * 60 * 60 * 24));
+          bValue = Math.ceil((bEnd - bStart) / (1000 * 60 * 60 * 24));
+          break;
+        case "customer":
+        case "vessel":
+        case "status":
+          // String comparison (case insensitive)
+          aValue = aValue.toLowerCase();
+          bValue = bValue.toLowerCase();
+          break;
+        default:
+          break;
+      }
+
+      if (aValue < bValue) {
+        return sortConfig.direction === "asc" ? -1 : 1;
+      }
+      if (aValue > bValue) {
+        return sortConfig.direction === "asc" ? 1 : -1;
+      }
+      return 0;
+    });
+  }, [bookings, sortConfig]);
+
   return (
     <div className={getThemeClass("bookingsPage", currentTheme, styles)}>
       {/* Page Header */}
@@ -194,14 +304,44 @@ const BookingsPage = () => {
             Manage your vessel booking requests and schedules
           </p>
         </div>
-        <button
-          className={getThemeClass("btnPrimary", currentTheme, styles)}
-          onClick={handleCreateBooking}
-          aria-label="Create new booking"
-        >
-          <PlusOutlined style={{ marginRight: "8px" }} />
-          New Booking
-        </button>
+        <div className={styles.headerActions}>
+          {/* View Toggle */}
+          <div className={styles.viewToggle}>
+            <button
+              className={`${getThemeClass(
+                "btnSecondary",
+                currentTheme,
+                styles
+              )} ${viewMode === "table" ? styles.active : ""}`}
+              onClick={() => setViewMode("table")}
+              aria-label="Table view"
+              title="Table view"
+            >
+              <TableOutlined />
+            </button>
+            <button
+              className={`${getThemeClass(
+                "btnSecondary",
+                currentTheme,
+                styles
+              )} ${viewMode === "card" ? styles.active : ""}`}
+              onClick={() => setViewMode("card")}
+              aria-label="Card view"
+              title="Card view"
+            >
+              <AppstoreOutlined />
+            </button>
+          </div>
+
+          <button
+            className={getThemeClass("btnPrimary", currentTheme, styles)}
+            onClick={handleCreateBooking}
+            aria-label="Create new booking"
+          >
+            <PlusOutlined style={{ marginRight: "8px" }} />
+            New Booking
+          </button>
+        </div>
       </div>
 
       {/* Search and Filters Section */}
@@ -257,7 +397,7 @@ const BookingsPage = () => {
             </button>
           </div>
         ) : loading ? (
-          <LoadingSkeleton type="table" rows={5} />
+          <LoadingSkeleton variant={viewMode} rows={5} />
         ) : bookings.length === 0 ? (
           <div className={getThemeClass("emptyState", currentTheme, styles)}>
             <div className={styles.emptyIcon}>
@@ -285,7 +425,7 @@ const BookingsPage = () => {
                 </button>
               )}
           </div>
-        ) : (
+        ) : viewMode === "table" ? (
           <div className={styles.bookingsTableContainer}>
             <table className={styles.bookingsTable} role="table">
               <thead>
@@ -303,8 +443,10 @@ const BookingsPage = () => {
                       currentTheme,
                       styles
                     )}
+                    onClick={() => handleSort("id")}
+                    style={{ cursor: "pointer" }}
                   >
-                    Booking ID
+                    Booking ID {getSortIcon("id")}
                   </th>
                   <th
                     scope="col"
@@ -313,8 +455,10 @@ const BookingsPage = () => {
                       currentTheme,
                       styles
                     )}
+                    onClick={() => handleSort("customer")}
+                    style={{ cursor: "pointer" }}
                   >
-                    Customer
+                    Customer {getSortIcon("customer")}
                   </th>
                   <th
                     scope="col"
@@ -323,8 +467,10 @@ const BookingsPage = () => {
                       currentTheme,
                       styles
                     )}
+                    onClick={() => handleSort("vessel")}
+                    style={{ cursor: "pointer" }}
                   >
-                    Vessel
+                    Vessel {getSortIcon("vessel")}
                   </th>
                   <th
                     scope="col"
@@ -333,8 +479,10 @@ const BookingsPage = () => {
                       currentTheme,
                       styles
                     )}
+                    onClick={() => handleSort("status")}
+                    style={{ cursor: "pointer" }}
                   >
-                    Status
+                    Status {getSortIcon("status")}
                   </th>
                   <th
                     scope="col"
@@ -343,8 +491,10 @@ const BookingsPage = () => {
                       currentTheme,
                       styles
                     )}
+                    onClick={() => handleSort("startDate")}
+                    style={{ cursor: "pointer" }}
                   >
-                    Date Range
+                    Date Range {getSortIcon("startDate")}
                   </th>
                   <th
                     scope="col"
@@ -353,8 +503,10 @@ const BookingsPage = () => {
                       currentTheme,
                       styles
                     )}
+                    onClick={() => handleSort("duration")}
+                    style={{ cursor: "pointer" }}
                   >
-                    Duration
+                    Duration {getSortIcon("duration")}
                   </th>
                   <th
                     scope="col"
@@ -369,7 +521,7 @@ const BookingsPage = () => {
                 </tr>
               </thead>
               <tbody>
-                {bookings.map((booking) => (
+                {sortedBookings.map((booking) => (
                   <tr
                     key={booking.id}
                     className={`${getThemeClass(
@@ -483,6 +635,7 @@ const BookingsPage = () => {
                             e.stopPropagation();
                             handleStatusToggle(booking.id);
                           }}
+                          disabled={processingBookingId !== null}
                           title={getStatusToggleTooltip(booking.status)}
                           aria-label={`${getStatusToggleTooltip(
                             booking.status
@@ -498,6 +651,7 @@ const BookingsPage = () => {
                             e.stopPropagation();
                             handleDeleteBooking(booking.id);
                           }}
+                          disabled={processingBookingId !== null}
                           title="Delete booking"
                           aria-label={`Delete booking ${booking.id}`}
                         >
@@ -509,6 +663,113 @@ const BookingsPage = () => {
                 ))}
               </tbody>
             </table>
+          </div>
+        ) : (
+          <div className={styles.cardsContainer}>
+            {bookings.map((booking) => (
+              <div key={booking.id} className={styles.bookingCard}>
+                <div className={styles.cardHeader}>
+                  <h3 className={styles.cardTitle}>{booking.clientName}</h3>
+                  <span
+                    className={
+                      styles[
+                        `statusBadge${
+                          booking.status.charAt(0).toUpperCase() +
+                          booking.status.slice(1)
+                        }${
+                          currentTheme.charAt(0).toUpperCase() +
+                          currentTheme.slice(1)
+                        }`
+                      ]
+                    }
+                  >
+                    {booking.status}
+                  </span>
+                </div>
+
+                <div className={styles.cardContent}>
+                  <div className={styles.cardRow}>
+                    <strong>Service:</strong> {booking.service}
+                  </div>
+                  <div className={styles.cardRow}>
+                    <strong>Date:</strong>{" "}
+                    {new Date(booking.date).toLocaleDateString()}
+                  </div>
+                  <div className={styles.cardRow}>
+                    <strong>Time:</strong> {booking.time}
+                  </div>
+                  <div className={styles.cardRow}>
+                    <strong>Phone:</strong> {booking.phone}
+                  </div>
+                  <div className={styles.cardRow}>
+                    <strong>Email:</strong> {booking.email}
+                  </div>
+                </div>
+
+                <div className={styles.cardActions}>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedBooking(booking)}
+                    className={`${styles.actionButton} ${
+                      styles[
+                        `viewDetailsButton${
+                          currentTheme.charAt(0).toUpperCase() +
+                          currentTheme.slice(1)
+                        }`
+                      ]
+                    }`}
+                    disabled={processingBookingId !== null}
+                    aria-label={`View details for ${booking.clientName}'s booking`}
+                  >
+                    View Details
+                  </button>
+
+                  <div className={styles.statusActions}>
+                    {/* Status Toggle Button - matches table functionality */}
+                    <button
+                      type="button"
+                      onClick={() => handleStatusToggle(booking.id)}
+                      className={`${styles.actionButton} ${
+                        booking.status === "pending"
+                          ? styles.confirmButton
+                          : booking.status === "confirmed"
+                          ? styles.warningButton
+                          : styles.restoreButton
+                      }`}
+                      disabled={processingBookingId !== null}
+                      title={getStatusToggleTooltip(booking.status)}
+                      aria-label={`${getStatusToggleTooltip(
+                        booking.status
+                      )} for ${booking.clientName}'s booking`}
+                    >
+                      {getStatusToggleIcon(booking.status)}
+                      {booking.status === "pending" && " Confirm"}
+                      {booking.status === "confirmed" && " Make Pending"}
+                      {booking.status === "cancelled" && " Restore"}
+                    </button>
+
+                    {/* Delete Button */}
+                    <button
+                      type="button"
+                      onClick={() => handleDeleteBooking(booking.id)}
+                      className={`${styles.actionButton} ${
+                        styles[
+                          `cancelButton${
+                            currentTheme.charAt(0).toUpperCase() +
+                            currentTheme.slice(1)
+                          }`
+                        ]
+                      }`}
+                      disabled={processingBookingId !== null}
+                      title="Delete booking"
+                      aria-label={`Delete ${booking.clientName}'s booking`}
+                    >
+                      <DeleteOutlined /> Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         )}
       </div>

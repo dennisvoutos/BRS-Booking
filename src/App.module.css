@@ -1,7 +1,7 @@
 /* CSS Custom Properties for theming */
-:root {
+:global(:root) {
   /* Light theme (Beige palette) */
-  --color-surface: #fcfbf8;
+  --color-surface: #f0f0f0;
   --color-surfaceSecondary: #f8f5f0;
   --color-surfaceTertiary: #f3efea;
   --color-textPrimary: #2c2c2c;
@@ -18,7 +18,7 @@
   --color-shadow: rgba(44, 44, 44, 0.1);
 }
 
-[data-theme="dark"] {
+:global([data-theme="dark"]) {
   /* Dark theme (Dark blue palette) */
   --color-surface: #0f1419;
   --color-surfaceSecondary: #1a1f2e;
@@ -38,13 +38,13 @@
 }
 
 /* Reset and base styles */
-* {
+:global(*) {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-.App {
+.app {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -56,14 +56,14 @@
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.App-header {
+.appHeader {
   background: linear-gradient(135deg, #1e40af, #3b82f6);
   color: white;
   padding: 1rem 2rem;
   box-shadow: var(--color-shadow) 0 2px 8px;
 }
 
-.header-content {
+.headerContent {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -71,19 +71,52 @@
   margin: 0 auto;
 }
 
-.header-branding h1 {
+.headerBranding h1 {
   font-size: 1.75rem;
   font-weight: 600;
   margin-bottom: 0.25rem;
 }
 
-.header-branding p {
+.headerBranding p {
   font-size: 0.875rem;
   opacity: 0.9;
 }
 
-main {
+.mainContent {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
+}
+
+.skipLink {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--color-primary);
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 1000;
+  transition: top 0.2s ease;
+}
+
+.skipLink:focus {
+  top: 6px;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.headerToggle {
+  margin-left: 1rem;
 }
